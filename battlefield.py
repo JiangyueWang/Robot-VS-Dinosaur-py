@@ -5,14 +5,14 @@ from dinosaur import Dinosaur
 class Battlefield:
 
     def __init__(self):
-        self.robot = Robot()
-        self.dinosaur = Dinosaur()
+        self.robot = Robot("Robot 1")
+        self.dinosaur = Dinosaur("T-rex", 20)
 
     def run_game(self):
         pass
 
     def display_welcome(self):
-        pass
+        print(f'Welcome to an epic battle for the ages!\nOnly one side can win!')
 
     def battle_phase(self):
         pass
