@@ -23,9 +23,9 @@ class Battlefield:
         while self.is_game_on:
             # robot attacks
             # show robot attack power and dinosaur remain health
-            print(f'{self.robot.name} attacked {self.dinosaur.name} with a Power Loader for {self.robot.active_weapon.attack_power}')
+            print(f'{self.robot.name} attacked {self.dinosaur.name} with a Power Loader for {self.robot.active_weapon.user_selected_weapon_attack_power}')
             self.dinosaur.health = self.dinosaur.health - \
-                self.robot.active_weapon.attack_power
+                self.robot.active_weapon.user_selected_weapon_attack_power
             print(f'{self.dinosaur.name} has {self.dinosaur.health} helath remaining')
             print(f'\n')
             # dinosaur attacks

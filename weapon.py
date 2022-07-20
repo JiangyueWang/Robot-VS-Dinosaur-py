@@ -1,6 +1,3 @@
-from operator import le
-
-
 class Weapon:
 
     # def __init__(self, name, attack_power):
@@ -16,7 +13,8 @@ class Weapon:
 
     def select_weapon(self):
         for i in range(1, len(self.name)+1):
-            print(f'choose {i} for weapon {self.name[i-1]}')
+            print(
+                f'choose {i} for weapon {self.name[i-1]} with attack power {self.attack_power[i-1]}')
         self.user_selected_weapon = int(input('enter here: '))
 
         for i in range(1, len(self.name)+1):
