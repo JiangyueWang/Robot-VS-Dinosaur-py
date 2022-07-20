@@ -36,8 +36,7 @@ class Battlefield:
             print(f'{self.robot.name} has {self.robot.health} health remaining')
             print(f'\n')
 
-            # if robot and dinosaur health is not zero battle starts
-            # if robot and dinosaur health is not zero battle starts
+            # if robot and dinosaur health is not zero battle continues
             if self.robot.health <= 0 or self.dinosaur.health <= 0:
                 self.is_game_on = False
             else:
