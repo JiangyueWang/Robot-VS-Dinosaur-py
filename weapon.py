@@ -22,4 +22,4 @@ class Weapon:
                 self.user_selected_weapon_name = self.name[i-1]
                 self.user_selected_weapon_attack_power = self.attack_power[i-1]
         print(
-            f'weapon {self.user_selected_weapon_name} selected with attack power {self.user_selected_weapon_attack_power}')
+            f'weapon {self.user_selected_weapon_name} selected with attack power {self.user_selected_weapon_attack_power}\n')

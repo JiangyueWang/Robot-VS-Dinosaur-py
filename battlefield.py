@@ -6,11 +6,11 @@ from dinosaur import Dinosaur
 class Battlefield:
 
     def __init__(self):
+        self.display_welcome()
         self.robot = Robot("Robot 1")
         self.dinosaur = Dinosaur("T-rex", 50)
 
     def run_game(self):
-        self.display_welcome()
         self.battle_phase()
         self.display_winner()
 
