@@ -12,9 +12,10 @@ class Battlefield:
     def run_game(self):
         self.display_welcome()
         self.battle_phase()
+        self.display_winner()
 
     def display_welcome(self):
-        print(f'Welcome to an epic battle for the ages!\nOnly one side can win!')
+        print(f'Welcome to an epic battle for the ages!\nOnly one side can win!\n')
 
     def battle_phase(self):
 
@@ -25,13 +26,15 @@ class Battlefield:
             print(f'{self.robot.name} attacked {self.dinosaur.name} with a Power Loader for {self.robot.active_weapon.attack_power}')
             self.dinosaur.health = self.dinosaur.health - \
                 self.robot.active_weapon.attack_power
-            print(f'{self.dinosaur.name} has {self.dinosaur.health} remaining')
+            print(f'{self.dinosaur.name} has {self.dinosaur.health} helath remaining')
+            print(f'\n')
             # dinosaur attacks
             # show dinosaur attack power and robot remain health
             print(
                 f'{self.dinosaur.name} attacked {self.robot.name} with a Power Loader for {self.dinosaur.attack_power}')
             self.robot.health = self.robot.health - self.dinosaur.attack_power
-            print(f'{self.robot.name} has {self.robot.health} remaining')
+            print(f'{self.robot.name} has {self.robot.health} health remaining')
+            print(f'\n')
 
             # if robot and dinosaur health is not zero battle starts
             # if robot and dinosaur health is not zero battle starts
@@ -41,4 +44,7 @@ class Battlefield:
                 self.is_game_on = True
 
     def display_winner(self):
-        pass
+        if self.robot.health <= 0:
+            print(f'{self.dinosaur.name} wins')
+        else:
+            print(f'{self.robot.name} wins')
