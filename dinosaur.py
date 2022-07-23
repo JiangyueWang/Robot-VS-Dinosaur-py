@@ -7,4 +7,4 @@ class Dinosaur:
 
     def attack(self, robot):
         robot.health = robot.health - self.attack_power
-        print(f'{self.name} attacked {self.robot.name} with a Power Loader for {self.attack_power}')
+        print(f'{self.name} attacked {robot.name} with a Power Loader for {self.attack_power}')

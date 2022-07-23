@@ -27,7 +27,7 @@ class Battlefield:
 
     def select_robot(self):
         # user selects robot from the fleet
-        print("----Selecting Robot----")
+        print("\n----Selecting Robot----")
         self.user_selected_num = int(input("Make selection for robot: "))
         self.user_selected_robot = self.fleet.robot_fleet[self.user_selected_num]
         # user selects weapon for the selected robot
@@ -36,15 +36,15 @@ class Battlefield:
         # weapon name: self.user_selected_robot.active_weapon.user_selected_weapon_name
         # weapon attack power: self.user_selected_robot.active_weapon.user_selected_weapon_attack_power
         print(
-            f'\nRobot: {self.user_selected_robot.name}\nWeapon: {self.user_selected_robot.active_weapon.user_selected_weapon_name}\nAttack power: {self.user_selected_robot.active_weapon.user_selected_weapon_attack_power}')
+            f'\nRobot: {self.user_selected_robot.name}\nHealth:{self.user_selected_robot.health}\nWeapon: {self.user_selected_robot.active_weapon.user_selected_weapon_name}\nAttack power: {self.user_selected_robot.active_weapon.user_selected_weapon_attack_power}')
 
     def generate_dino(self):
-        print('----Generating Dinosaour----')
+        print('\n----Generating Dinosaour----')
         self.rand_generate_dino_index = random.randint(
-            0, len(self.herd.dino_herd)+1)
+            0, len(self.herd.dino_herd))
         self.rand_generate_dino = self.herd.dino_herd[self.rand_generate_dino_index]
         print(
-            f'\nDinosaur: {self.rand_generate_dino.name}\nAttack Power:{self.rand_generate_dino.attack_power}')
+            f'\nDinosaur: {self.rand_generate_dino.name}\nHealth:{self.rand_generate_dino.health}\nAttack Power:{self.rand_generate_dino.attack_power}')
         #     print("***Robot turn***")
         #     # display dino options, so user can pick the one that gets attacked
         #     # call dinosaur_options here
@@ -60,14 +60,24 @@ class Battlefield:
         self.select_robot()
         # randomly generated dinosaour
         self.generate_dino()
-        # self.battle_phase()
+        self.battle_phase()
         # self.display_winner()
 
     def battle_phase(self):
-        pass
-        # robot attacks
-        # self.user_selected_robot.attack(self.dinosaur)
 
+        print("\n----Battle Starts----\n")
+        
+        
+        # robot attacks
+        self.user_selected_robot.attack(self.rand_generate_dino)
+        # display dinasour health
+        print(
+            f'{self.rand_generate_dino.name} with {self.rand_generate_dino.health} remaining!')
+        # dinasour attacks
+        self.rand_generate_dino.attack(self.user_selected_robot)
+        # display robot health
+        print(
+            f'{self.user_selected_robot.name} with {self.user_selected_robot.health} remaining!')
         # def battle_phase(self):
 
         #     # while len(self.fleet.robot_fleet) > 0 and len(self.herd.dinosaur_herd) > 0:
