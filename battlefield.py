@@ -8,20 +8,13 @@ class Battlefield:
     def __init__(self):
 
         self.fleet = Fleet()
-        self.user_selected_robot_count = 0
-        # self.user_selected_robot = ""
         self.herd = Herd()
-        self.rand_generated_dino_count = 0
-        # self.generated_dino = ""
-        self.game_on = True
-        self.health_above_zero = True
 
     def display_welcome(self):
         print(f'Welcome to an epic battle for the ages!\nOnly one side can win!\n')
 
     def robot_option(self):
         # display the list of robots in fleet
-
         print('Here is the list of robot your can selected from')
         self.counter = 0
         for robot in self.fleet.robot_fleet:
@@ -50,12 +43,6 @@ class Battlefield:
         self.rand_generate_dino = self.herd.dino_herd[self.rand_generate_dino_index]
         print(
             f'\nDinosaur: {self.rand_generate_dino.name}\nHealth:{self.rand_generate_dino.health}\nAttack Power:{self.rand_generate_dino.attack_power}')
-        #     print("***Robot turn***")
-        #     # display dino options, so user can pick the one that gets attacked
-        #     # call dinosaur_options here
-        #     user_dinosaur_choice= int(input("Make selection"))
-        #     self.fleet.robot_fleet[user_robot_choice].attack(self.herd.dinosaur_herd.user_dinosaur_choice)
-        #     # afer attack check the dino health, if 0 or lower then remove from herd list
 
     def run_game(self):
         self.display_welcome()
@@ -68,34 +55,23 @@ class Battlefield:
         self.battle_phase()
         self.display_winner()
 
-    def check_health(self):
-        if self.user_selected_robot.health <= 0:
-            return False
-        elif self.rand_generate_dino.health <= 0:
-            return False
-        else:
-            return True
-
     def battle_phase(self):
 
         print("\n----Battle Starts----\n")
 
         while True:
-            # self.game_on = self.is_game_on()
-            # self.health_above_zero = self.check_health()
+
             while True:
                 # robot attacks
                 self.user_selected_robot.attack(self.rand_generate_dino)
-                # self.health_above_zero = self.check_health()
                 # display dinasour health
                 print(
                     f'{self.rand_generate_dino.name} with {self.rand_generate_dino.health} remaining!')
                 if self.rand_generate_dino.health <= 0:
                     break
+                
                 # dinasour attacks
                 self.rand_generate_dino.attack(self.user_selected_robot)
-                # self.health_above_zero = self.check_health()
-
                 # display robot health
                 print(
                     f'{self.user_selected_robot.name} with {self.user_selected_robot.health} remaining!')
@@ -105,6 +81,7 @@ class Battlefield:
             if self.user_selected_robot.health <= 0:
                 # remove robot from the fleet
                 self.fleet.robot_fleet.remove(self.user_selected_robot)
+                # if no robots in the fleet break the loop
                 if len(self.fleet.robot_fleet) == 0:
                     break
                 else:
@@ -116,6 +93,7 @@ class Battlefield:
             if self.rand_generate_dino.health <= 0:
                 # remove dino from the herd
                 self.herd.dino_herd.remove(self.rand_generate_dino)
+                # if no dinos in the herd break the loop
                 if len(self.herd.dino_herd) == 0:
                     break
                 else:
@@ -133,10 +111,6 @@ class Battlefield:
 
         # def battle_phase(self):
 
-        #     # while len(self.fleet.robot_fleet) > 0 and len(self.herd.dinosaur_herd) > 0:
-        #     # call robot turn
-        #     # dino turn "if" herd list is greater than 0
-        #     # call dino turn
 
         #     self.is_game_on = True
         #     while self.is_game_on:
@@ -161,14 +135,4 @@ class Battlefield:
         #         else:
         #             self.is_game_on = True
 
-        # def dinosaur_turn(self):
-        #     pass
 
-        # def robot_options(self):
-        #     counter = 0
-        #     for robot in self.fleet.robot_fleet:
-        #         print(f'Press {counter} to select {robot.name}')
-        #         counter += 1
-
-        # def dinosaur_options(self):
-        #     pass
