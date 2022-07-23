@@ -1,6 +1,4 @@
 import random
-from re import T
-
 from fleet import Fleet
 from herd import Herd
 
@@ -15,6 +13,8 @@ class Battlefield:
         self.herd = Herd()
         self.rand_generated_dino_count = 0
         # self.generated_dino = ""
+        self.game_on = True
+        self.health_above_zero = True
 
     def display_welcome(self):
         print(f'Welcome to an epic battle for the ages!\nOnly one side can win!\n')
@@ -31,9 +31,9 @@ class Battlefield:
     def select_robot(self):
         # user selects robot from the fleet
         print("\n----Selecting Robot----")
+        self.user_selected_robot_count += 1
         self.user_selected_num = int(input("Make selection for robot: "))
         self.user_selected_robot = self.fleet.robot_fleet[self.user_selected_num]
-        self.user_selected_robot_count += 1
         # user selects weapon for the selected robot
         self.user_selected_robot.select_weapon()
         # user selected weapon info
@@ -43,11 +43,11 @@ class Battlefield:
             f'\nRobot: {self.user_selected_robot.name}\nHealth:{self.user_selected_robot.health}\nWeapon: {self.user_selected_robot.active_weapon.user_selected_weapon_name}\nAttack power: {self.user_selected_robot.active_weapon.user_selected_weapon_attack_power}')
 
     def generate_dino(self):
+        self.rand_generated_dino_count += 1
         print('\n----Generating Dinosaour----')
         self.rand_generate_dino_index = random.randint(
             0, len(self.herd.dino_herd)-1)
         self.rand_generate_dino = self.herd.dino_herd[self.rand_generate_dino_index]
-        self.rand_generated_dino_count += 1
         print(
             f'\nDinosaur: {self.rand_generate_dino.name}\nHealth:{self.rand_generate_dino.health}\nAttack Power:{self.rand_generate_dino.attack_power}')
         #     print("***Robot turn***")
@@ -70,9 +70,9 @@ class Battlefield:
 
     def is_game_on(self):
 
-        if self.rand_generated_dino_count > 3:
+        if self.rand_generated_dino_count > 2:
             return False
-        elif self.user_selected_robot_count > 3:
+        elif self.user_selected_robot_count > 2:
             return False
         else:
             return True
@@ -89,26 +89,27 @@ class Battlefield:
 
         print("\n----Battle Starts----\n")
 
-        self.game_on = True
-
-        while self.game_on == True:
-
+        while self.game_on:
             self.game_on = self.is_game_on()
             self.health_above_zero = self.check_health()
-            while self.health_above_zero == True:
+            while self.health_above_zero:
                 # robot attacks
                 self.user_selected_robot.attack(self.rand_generate_dino)
                 self.health_above_zero = self.check_health()
                 # display dinasour health
                 print(
                     f'{self.rand_generate_dino.name} with {self.rand_generate_dino.health} remaining!')
+                if self.health_above_zero == False:
+                    break
                 # dinasour attacks
                 self.rand_generate_dino.attack(self.user_selected_robot)
                 self.health_above_zero = self.check_health()
+
                 # display robot health
                 print(
                     f'{self.user_selected_robot.name} with {self.user_selected_robot.health} remaining!')
-
+                if self.health_above_zero == False:
+                    break
             if self.user_selected_robot.health <= 0:
                 # remove robot from the fleet
                 self.fleet.robot_fleet.remove(self.user_selected_robot)
