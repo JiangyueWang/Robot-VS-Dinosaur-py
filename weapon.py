@@ -12,14 +12,14 @@ class Weapon:
         self.select_weapon()
 
     def select_weapon(self):
-        for i in range(1, len(self.name)+1):
+        for i in range(0, len(self.name)):
             print(
-                f'choose {i} for weapon {self.name[i-1]} with attack power {self.attack_power[i-1]}')
+                f'choose {i} for weapon {self.name[i]} with attack power {self.attack_power[i-1]}')
         self.user_selected_weapon = int(input('enter here: '))
 
-        for i in range(1, len(self.name)+1):
+        for i in range(0, len(self.name)):
             if self.user_selected_weapon == i:
-                self.user_selected_weapon_name = self.name[i-1]
+                self.user_selected_weapon_name = self.name[i]
                 self.user_selected_weapon_attack_power = self.attack_power[i-1]
-        print(
-            f'weapon {self.user_selected_weapon_name} selected with attack power {self.user_selected_weapon_attack_power}\n')
+        # print(
+        #     f'weapon {self.user_selected_weapon_name} selected with attack power {self.user_selected_weapon_attack_power}\n')
