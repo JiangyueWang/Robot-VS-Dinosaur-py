@@ -11,9 +11,9 @@ class Herd:
         self.dino_herd.append(dino)
 
     def creat_herd(self):
-        self.add_dino(Dinosaur("T-rex", 50, 150))
-        self.add_dino(Dinosaur("Velociraptor", 30, 130))
-        self.add_dino(Dinosaur("Ankylosaurus", 20, 120))
+        self.add_dino(Dinosaur("T-rex", 50, 120))
+        self.add_dino(Dinosaur("Velociraptor", 30, 100))
+        self.add_dino(Dinosaur("Ankylosaurus", 20, 90))
 
     def display_dino(self):
         for dino in self.dino_herd:
