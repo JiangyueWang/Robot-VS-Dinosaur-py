@@ -66,16 +66,7 @@ class Battlefield:
         # randomly generated dinosaour
         self.generate_dino()
         self.battle_phase()
-        # self.display_winner()
-
-    def is_game_on(self):
-
-        if self.rand_generated_dino_count > 2:
-            return False
-        elif self.user_selected_robot_count > 2:
-            return False
-        else:
-            return True
+        self.display_winner()
 
     def check_health(self):
         if self.user_selected_robot.health <= 0:
@@ -89,43 +80,57 @@ class Battlefield:
 
         print("\n----Battle Starts----\n")
 
-        while self.game_on:
-            self.game_on = self.is_game_on()
-            self.health_above_zero = self.check_health()
-            while self.health_above_zero:
+        while True:
+            # self.game_on = self.is_game_on()
+            # self.health_above_zero = self.check_health()
+            while True:
                 # robot attacks
                 self.user_selected_robot.attack(self.rand_generate_dino)
-                self.health_above_zero = self.check_health()
+                # self.health_above_zero = self.check_health()
                 # display dinasour health
                 print(
                     f'{self.rand_generate_dino.name} with {self.rand_generate_dino.health} remaining!')
-                if self.health_above_zero == False:
+                if self.rand_generate_dino.health <= 0:
                     break
                 # dinasour attacks
                 self.rand_generate_dino.attack(self.user_selected_robot)
-                self.health_above_zero = self.check_health()
+                # self.health_above_zero = self.check_health()
 
                 # display robot health
                 print(
                     f'{self.user_selected_robot.name} with {self.user_selected_robot.health} remaining!')
-                if self.health_above_zero == False:
+                if self.user_selected_robot.health <= 0:
                     break
+
             if self.user_selected_robot.health <= 0:
                 # remove robot from the fleet
                 self.fleet.robot_fleet.remove(self.user_selected_robot)
-                self.game_on = self.is_game_on()
-                # display list of robot
-                self.robot_option()
-                # user selects a robot and weapon for the selected robot
-                self.select_robot()
+                if len(self.fleet.robot_fleet) == 0:
+                    break
+                else:
+                    # display list of robot
+                    self.robot_option()
+                    # user selects a robot and weapon for the selected robot
+                    self.select_robot()
+
             if self.rand_generate_dino.health <= 0:
                 # remove dino from the herd
                 self.herd.dino_herd.remove(self.rand_generate_dino)
-                self.game_on = self.is_game_on()
-                # re-generate dino
-                self.generate_dino()
+                if len(self.herd.dino_herd) == 0:
+                    break
+                else:
+                    # re-generate dino
+                    self.generate_dino()
 
-        print("Game OVER!")
+    def display_winner(self):
+        if len(self.fleet.robot_fleet) == 0:
+            print(
+                f'\nThere are {len(self.fleet.robot_fleet)} robots in the Fleet')
+            print(f'Dino Herd wins')
+        else:
+            print(f'\nThere are {len(self.herd.dino_herd)} dinos in the Herd')
+            print(f'Robot Fleet wins')
+
         # def battle_phase(self):
 
         #     # while len(self.fleet.robot_fleet) > 0 and len(self.herd.dinosaur_herd) > 0:
@@ -167,9 +172,3 @@ class Battlefield:
 
         # def dinosaur_options(self):
         #     pass
-
-    def display_winner(self):
-        if self.robot.health <= 0:
-            print(f'{self.dinosaur.name} wins')
-        else:
-            print(f'{self.robot.name} wins')
