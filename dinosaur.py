@@ -9,6 +9,6 @@ class Dinosaur:
         if robot.health > 0:
             robot.health = robot.health - self.attack_power
             print(
-                f'{self.name} attacked {robot.name} with a Power Loader for {self.attack_power}')
+                f'\n{self.name} attacked {robot.name} with a Power Loader for {self.attack_power}')
         else:
-            return
+            return None
