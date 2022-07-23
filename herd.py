@@ -4,11 +4,11 @@ from dinosaur import Dinosaur
 class Herd:
 
     def __init__(self):
-        self.herd = []
+        self.dino_herd = []
         self.creat_herd()
 
     def add_dino(self, dino):
-        self.herd.append(dino)
+        self.dino_herd.append(dino)
 
     def creat_herd(self):
         self.add_dino(Dinosaur("T-rex", 50, 150))
@@ -16,10 +16,10 @@ class Herd:
         self.add_dino(Dinosaur("Ankylosaurus", 20, 120))
 
     def display_dino(self):
-        for dino in self.herd:
+        for dino in self.dino_herd:
             print(
                 f'Dinosaur: {dino.name}\nHealth:{dino.health}\nAttack Power:{dino.attack_power}\n')
 
 
-herd_one = Herd()
-herd_one.display_dino()
+# herd_one = Herd()
+# herd_one.display_dino()

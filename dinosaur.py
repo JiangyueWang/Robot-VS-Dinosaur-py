@@ -7,3 +7,4 @@ class Dinosaur:
 
     def attack(self, robot):
         robot.health = robot.health - self.attack_power
+        

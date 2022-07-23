@@ -12,6 +12,7 @@ class Weapon:
         self.select_weapon()
 
     def select_weapon(self):
+        print('----Selecting Weapon----')
         for i in range(0, len(self.name)):
             print(
                 f'choose {i} for weapon {self.name[i]} with attack power {self.attack_power[i-1]}')
