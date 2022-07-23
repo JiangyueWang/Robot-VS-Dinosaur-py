@@ -9,11 +9,8 @@ class Robot:
 
     def attack(self, dinosaur):
         dinosaur.health = dinosaur.health - \
-                self.active_weapon.user_selected_weapon_attack_power
-        if dinosaur.health > 0:
-            print(f'\n{self.name} attacked {dinosaur.name} with a Power Loader for {self.active_weapon.user_selected_weapon_attack_power}')
-        else:
-            return None
+            self.active_weapon.user_selected_weapon_attack_power
+        print(f'\n{self.name} attacked {dinosaur.name} with a Power Loader for {self.active_weapon.user_selected_weapon_attack_power}')
 
     def select_weapon(self):
         self.active_weapon = Weapon()
